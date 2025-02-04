@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haruria.com</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Haruria.com</h1>
+    </header>
+
+    <div class="main-content">
+        <button id="receiveButton">受け取る</button>
+        <button id="closeButton" style="display: none;">閉じる</button>
+
+        <p id="accountAddress">未接続</p> <!-- ここに接続したアドレスを表示 -->
+        
+        <div id="balanceInfo">
+            <p id="ethBalance">ETH: 0.00</p>
+            <p id="audBalance">AUD: 0.00</p>
+            <p id="jpyBalance">JPY: 0.00</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
