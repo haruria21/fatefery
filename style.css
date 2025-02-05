@@ -224,5 +224,14 @@ p {
     text-align: center;
     font-size: 18px;
   }
+   #birthdayCountdownSection {
+    border: 2px solid #ffcc00;
+    background-color: #fff5cc;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+  }
   
   
