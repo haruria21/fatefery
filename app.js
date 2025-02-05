@@ -28,7 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
       metaMaskScreen.style.display = "block";
     } else {
       passwordError.style.display = "block";
+
     }
+   
+
+  updateDaysApart();
   });
 
   // MetaMask連携
@@ -88,6 +92,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
     document.getElementById("daysSinceLastMet").innerHTML = `💔 会えていない日数: <strong>${daysDiff}日</strong>`;
+  }
+
+   // 記念日カウントダウン
+   function updateCountdown(targetDate, elementId) {
+    const today = new Date();
+    const target = new Date(today.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+    if (today > target) {
+      target.setFullYear(today.getFullYear() + 1);
+    }
+    const diffTime = target - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById(elementId).textContent = diffDays;
+  }
+
+  updateCountdown(new Date(2024, 2, 1), "haruCountdown"); // 3月1日
+  updateCountdown(new Date(2024, 5, 3), "riaCountdown"); // 6月3日
+
+  // あってない期間計算
+  function updateDaysApart() {
+    const lastMetDate = new Date(2024, 0, 14); // 1月14日
+    const today = new Date();
+    const diffTime = today - lastMetDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById("daysApart").textContent = diffDays;
   }
 
   updateDaysSinceLastMet();
