@@ -81,4 +81,15 @@ document.addEventListener("DOMContentLoaded", () => {
       return { jpy: 0, aud: 0 };
     }
   }
+  function updateDaysSinceLastMet() {
+    const lastMetDate = new Date("2025-01-14");
+    const today = new Date();
+    const timeDiff = today - lastMetDate;
+    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+    document.getElementById("daysSinceLastMet").innerHTML = `💔 会えていない日数: <strong>${daysDiff}日</strong>`;
+  }
+
+  updateDaysSinceLastMet();
+  setInterval(updateDaysSinceLastMet, 86400000); // 1日に1回更新
 });
