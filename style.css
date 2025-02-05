@@ -1,114 +1,93 @@
-/* 基本設定 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haruria.com</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #balanceDisplay {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      text-align: right;
+      background: linear-gradient(135deg, #fff0f6, #ffe4ec);
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-size: 14px;
+      border: 2px solid #ffb6c1;
+    }
+       /* 日記エントリーのスタイル */
+       .diaryEntry {
+      background: #f0f8ff;
+      border: 1px solid #d3e0ea;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      position: relative;
+    }
+    .diaryEntry p {
+      margin: 4px 0;
+    }
+    .deleteEntry {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: #ffb6c1;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 2px 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  </style>
+  
+  </style>
+</head>
+<body>
+  <!-- パスワード入力画面 -->
+  <div id="passwordScreen">
+    <h2>パスワードを入力してください</h2>
+    <!-- 初期状態は文字が見える (type="text") -->
+    <input type="text" id="passwordInput" placeholder="パスワード">
+    <button id="togglePassword">非表示にする</button>
+    <button id="passwordSubmit">送信</button>
+    <p id="passwordError" style="color: red; display: none;">パスワードが間違っています</p>
+  </div>
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
-    color: #333;
-    text-align: center;
-}
+  <!-- MetaMask連携画面（パスワード正解後に表示） -->
+  <div id="metaMaskScreen" style="display: none;">
+    <h2>MetaMaskと連携してください</h2>
+    <button id="connectMetaMask">MetaMaskと連携</button>
+    <p id="metaMaskError" style="color: red; display: none;"></p>
+  </div>
 
-/* ヘッダー */
-header {
-    background-color: #ff5e5e; /* 明るい赤色 */
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-}
+  <!-- メインコンテンツ（MetaMask連携後に表示） -->
+  <div id="mainContent" style="display: none;">
+    <header>
+      <h1>Haruria.com</h1>
+      <!-- 連携されたアカウントの残高表示 -->
+      <div id="balanceDisplay"></div>
+    </header>
+    <p>ここがメインコンテンツです。</p>
+    
+    <!-- 毎日の日記セクション -->
+    <section id="diarySection">
+      <h2>毎日の日記</h2>
+      <textarea id="diaryEntry" placeholder="今日の日記をここに書いてください"></textarea>
+      <button id="saveDiary">保存</button>
+      <div id="diaryEntries">
+        <!-- 保存した日記エントリーがここに表示されます -->
+      </div>
+    </section>
+  </div>
 
-h1 {
-    font-size: 2.5rem;
-    color: white;
-    font-weight: 600;
-}
-
-/* メインコンテンツ */
-.main-content {
-    margin: 0 auto;
-    max-width: 600px;
-    padding: 20px;
-}
-
-button {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #ff8c00; /* オレンジ色 */
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 20px;
-}
-
-button:hover {
-    background-color: #ff6a00; /* 少し暗くする */
-    transform: scale(1.05);
-}
-
-#closeButton {
-    background-color: #d1d1d1;
-}
-
-#closeButton:hover {
-    background-color: #b3b3b3;
-}
-
-/* アドレスと残高の情報 */
-#balanceInfo {
-    background-color: #ffffff; /* 白背景 */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-    display: inline-block;
-    width: 80%;
-    max-width: 400px;
-}
-
-p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-#accountAddress {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #ff5e5e;
-    margin-top: 20px;
-    letter-spacing: 0.5px;
-}
-
-#ethBalance, #audBalance, #jpyBalance {
-    font-size: 1.2rem;
-    color: #ff8c00;
-    font-weight: bold;
-}
-
-#ethBalance {
-    margin-top: 15px;
-}
-
-#audBalance, #jpyBalance {
-    margin-top: 10px;
-}
-
-/* 背景画像 */
-body {
-    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fcow&psig=AOvVaw3qaHXyLnlOpmmq1cbM9pXh&ust=1738726699284000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCICn1-yLqYsDFQAAAAAdAAAAABAO');
-    background-size: cover; /* 背景を画面いっぱいに広げる */
-    background-position: center;
-    background-attachment: fixed; /* スクロールしても背景が動かない */
-    font-family: 'HappyFont', sans-serif;
-}
+  <!-- Web3.js の読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+  <!-- アプリの JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
