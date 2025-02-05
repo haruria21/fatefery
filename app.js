@@ -138,5 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // ページ読み込み時に実行 & 1日ごとに更新
   updateAnniversaryCountdown();
   setInterval(updateAnniversaryCountdown, 86400000);
+  function updateRelationshipDays() {
+    const today = new Date();
+    const startDate = new Date(2021, 11, 7); // 2021年12月7日 (月は0始まり)
+  
+    const timeDiff = today - startDate;
+    const daysTogether = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  
+    document.getElementById("relationshipDays").textContent = `${daysTogether}`;
+  }
+  
+  // ページ読み込み時に実行 & 1日ごとに更新
+  updateRelationshipDays();
+  setInterval(updateRelationshipDays, 86400000);
+  
   
 });
