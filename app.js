@@ -70,6 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <p>💰 AUD: ${parseFloat(balanceAUD).toFixed(2)}</p>
         <p>💴 JPY: ${parseFloat(balanceJPY).toFixed(2)}</p>
       `;
+
+      updateSavingsGoal(balanceAUD);
+
     } catch (error) {
       console.error("残高取得に失敗しました:", error);
     }
@@ -151,6 +154,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // ページ読み込み時に実行 & 1日ごとに更新
   updateRelationshipDays();
   setInterval(updateRelationshipDays, 86400000);
+
+  function updateSavingsGoal(currentSavings) {
+    const goalAmount = 1000; // 目標額（AUD）
+    const remainingAUD = goalAmount - currentSavings;
+    document.getElementById("currentSavings").textContent = currentSavings.toFixed(2); // 現在の貯金額
+
+    // 目標額までの残り金額を表示
+    document.getElementById("remainingSavings").textContent = remainingAUD > 0 ? remainingAUD.toFixed(2) : "達成 🎉";
+  }
+
+  // ページ読み込み時に実行
+  if (typeof window.ethereum !== "undefined") {
+    ethereum.request({ method: "eth_accounts" }).then(accounts => {
+      if (accounts.length > 0) {
+        fetchAndDisplayBalance(accounts[0]); 
+  }
+  
+});
+}
   
   
 });
