@@ -1,93 +1,207 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Haruria.com</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    #balanceDisplay {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      text-align: right;
-      background: linear-gradient(135deg, #fff0f6, #ffe4ec);
-      padding: 10px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      font-size: 14px;
-      border: 2px solid #ffb6c1;
-    }
-       /* 日記エントリーのスタイル */
-       .diaryEntry {
-      background: #f0f8ff;
-      border: 1px solid #d3e0ea;
-      padding: 8px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      position: relative;
-    }
-    .diaryEntry p {
-      margin: 4px 0;
-    }
-    .deleteEntry {
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      background: #ffb6c1;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      padding: 2px 6px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-  </style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* 可愛らしいフォント */
+    font-size: 36px; /* タイトルの大きさ */
+    color: #ff66b2; /* ピンク色に変更 */
+    text-align: center; /* 中央に配置 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* ふわっとした影をつける */
+    padding: 20px;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #ff5e5e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff6a00;
+}
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0px); }
+  }
   
-  </style>
-</head>
-<body>
-  <!-- パスワード入力画面 -->
-  <div id="passwordScreen">
-    <h2>パスワードを入力してください</h2>
-    <!-- 初期状態は文字が見える (type="text") -->
-    <input type="text" id="passwordInput" placeholder="パスワード">
-    <button id="togglePassword">非表示にする</button>
-    <button id="passwordSubmit">送信</button>
-    <p id="passwordError" style="color: red; display: none;">パスワードが間違っています</p>
-  </div>
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background-color: #fff8f0;
+    color: #333;
+    text-align: center;
+  }
+  
+  #balanceDisplay {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ff4081;
+    text-shadow: 1px 1px 3px rgba(255, 64, 129, 0.3);
+    animation: floating 2s ease-in-out infinite;
+  }
+  
+  
 
-  <!-- MetaMask連携画面（パスワード正解後に表示） -->
-  <div id="metaMaskScreen" style="display: none;">
-    <h2>MetaMaskと連携してください</h2>
-    <button id="connectMetaMask">MetaMaskと連携</button>
-    <p id="metaMaskError" style="color: red; display: none;"></p>
-  </div>
+.deleteEntry {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #ffb6c1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+#mainContent {
+    display: none;
+    background-color: #fffae6; /* 背景色を薄い黄色に */
+    text-align: center;
+    padding: 40px;
+    border-radius: 15px;
+}
 
-  <!-- メインコンテンツ（MetaMask連携後に表示） -->
-  <div id="mainContent" style="display: none;">
-    <header>
-      <h1>Haruria.com</h1>
-      <!-- 連携されたアカウントの残高表示 -->
-      <div id="balanceDisplay"></div>
-    </header>
-    <p>ここがメインコンテンツです。</p>
-    
-    <!-- 毎日の日記セクション -->
-    <section id="diarySection">
-      <h2>毎日の日記</h2>
-      <textarea id="diaryEntry" placeholder="今日の日記をここに書いてください"></textarea>
-      <button id="saveDiary">保存</button>
-      <div id="diaryEntries">
-        <!-- 保存した日記エントリーがここに表示されます -->
-      </div>
-    </section>
-  </div>
+header {
+    background-color: pink; /* ヘッダーの背景をピンクに */
+    padding: 30px;
+    border-radius: 40px;
+    width: 100%; /* ヘッダーが画面幅いっぱいに広がる */
+    box-sizing: border-box; /* パディングを含めて幅が100%になるように */
+}
 
-  <!-- Web3.js の読み込み -->
-  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
-  <!-- アプリの JavaScript -->
-  <script src="app.js"></script>
-</body>
-</html>
+
+h1 {
+    font-size: 3rem; /* タイトルを大きく */
+    color: #ff6600; /* 文字の色をオレンジ */
+    font-weight: bold;
+}
+
+.password-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.password-input {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.password-button {
+    background-color: #ff66b2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.password-button:hover {
+    background-color: #ff3385;
+}
+
+
+#balanceDisplay {
+    font-size: 3rem; /* 残高表示を大きく */
+    font-weight: bold;
+    color: #008800; /* 緑色で強調 */
+}
+
+p {
+    font-size: 1.8rem; /* テキストを大きく */
+    font-weight: bold;
+    color: rgb(165, 15, 15); /* 濃いグレーで読みやすく */
+}
+
+.goal-section {
+    background-color: #fff0f6;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.goal-section h3 {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 28px;
+    color: #ff66b2;
+    margin-bottom: 20px;
+}
+
+.goal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.goal-button {
+    background-color: #ff66b2;
+    color: white;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.goal-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.goal-button:active {
+    transform: translateY(2px);
+}
+
+.goal-description {
+    display: none;
+    font-size: 18px;
+    margin-top: 20px;
+    color: #333;
+}
+
+.small-icon {
+    width: 50px;
+    position: absolute;
+    top: 10px;
+    display: none; /* 最初は非表示 */
+  }
+  .left { left: 10px; }
+  .right { right: 10px; }
