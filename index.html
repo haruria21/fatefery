@@ -5,51 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Haruria.com</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    #balanceDisplay {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      text-align: right;
+      background: linear-gradient(135deg, #fff0f6, #ffe4ec);
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-size: 14px;
+      border: 2px solid #ffb6c1;
+    }
+       /* 日記エントリーのスタイル */
+       .diaryEntry {
+      background: #f0f8ff;
+      border: 1px solid #d3e0ea;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      position: relative;
+    }
+    .diaryEntry p {
+      margin: 4px 0;
+    }
+    .deleteEntry {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: #ffb6c1;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 2px 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  </style>
+  
+  </style>
 </head>
 <body>
   <!-- パスワード入力画面 -->
   <div id="passwordScreen">
     <h2>パスワードを入力してください</h2>
-    <!-- 初期状態は文字が見える（type="text"） -->
+    <!-- 初期状態は文字が見える (type="text") -->
     <input type="text" id="passwordInput" placeholder="パスワード">
     <button id="togglePassword">非表示にする</button>
     <button id="passwordSubmit">送信</button>
     <p id="passwordError" style="color: red; display: none;">パスワードが間違っています</p>
   </div>
 
-  <!-- メインコンテンツ（パスワード認証後に表示） -->
+  <!-- MetaMask連携画面（パスワード正解後に表示） -->
+  <div id="metaMaskScreen" style="display: none;">
+    <h2>MetaMaskと連携してください</h2>
+    <button id="connectMetaMask">MetaMaskと連携</button>
+    <p id="metaMaskError" style="color: red; display: none;"></p>
+  </div>
+
+  <!-- メインコンテンツ（MetaMask連携後に表示） -->
   <div id="mainContent" style="display: none;">
     <header>
       <h1>Haruria.com</h1>
+      <!-- 連携されたアカウントの残高表示 -->
+      <div id="balanceDisplay"></div>
     </header>
-    <!-- MetaMaskログイン・ログアウト -->
-    <button id="loginButton">ログイン (MetaMask)</button>
-    <button id="logoutButton" style="display: none;">ログアウト</button>
-
-    <!-- 受け取る・送金ボタン -->
-    <button id="receiveButton" style="display: none;">受け取る</button>
-    <button id="sendButton" style="display: none;">送金</button>
-
-    <p id="accountAddress">未接続</p>
-
-    <!-- 送金フォーム -->
-    <div id="sendForm" style="display: none;">
-      <input type="text" id="recipientAddress" placeholder="送金先アドレス">
-      <input type="number" id="sendAmount" placeholder="ETH数量">
-      <button id="confirmSend">送金実行</button>
-    </div>
-
-    <!-- 残高情報 -->
-    <div id="balanceInfo">
-      <p id="ethBalance">ETH: 0.00</p>
-      <p id="audBalance">AUD: 0.00</p>
-      <p id="jpyBalance">JPY: 0.00</p>
-    </div>
+    <p>ここがメインコンテンツです。</p>
+    
+    <!-- 毎日の日記セクション -->
+    <section id="diarySection">
+      <h2>毎日の日記</h2>
+      <textarea id="diaryEntry" placeholder="今日の日記をここに書いてください"></textarea>
+      <button id="saveDiary">保存</button>
+      <div id="diaryEntries">
+        <!-- 保存した日記エントリーがここに表示されます -->
+      </div>
+    </section>
   </div>
 
-  <!-- Web3.jsの読み込み -->
+  <!-- Web3.js の読み込み -->
   <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
-  <!-- アプリのJavaScript -->
+  <!-- アプリの JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
