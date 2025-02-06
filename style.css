@@ -1,247 +1,111 @@
+/* 🌸 可愛くポップなデザインに改良 🌸 */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-h1 {
-    font-family: 'Comic Sans MS', cursive, sans-serif; /* 可愛らしいフォント */
-    font-size: 36px; /* タイトルの大きさ */
-    color: #ff66b2; /* ピンク色に変更 */
-    text-align: center; /* 中央に配置 */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* ふわっとした影をつける */
-    padding: 20px;
-}
-
-
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7); /* ピンクのグラデーション背景 */
     color: #333;
     text-align: center;
 }
 
+/* ヘッダーのデザイン強化 */
 header {
-    background-color: #ff5e5e;
+    background: rgba(255, 182, 193, 0.9); /* 透明感のあるピンク */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px;
 }
 
 h1 {
-    font-size: 2.5rem;
-    color: white;
-    font-weight: 600;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #ff8c00;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ff6a00;
-}
-@keyframes floating {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-3px); }
-    100% { transform: translateY(0px); }
-  }
-  
-  body {
-    font-family: "Noto Sans JP", sans-serif;
-    background-color: #fff8f0;
-    color: #333;
-    text-align: center;
-  }
-  
-  #balanceDisplay {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-size: 1.8em;
-    font-weight: bold;
+    font-family: 'Potta One', cursive;
+    font-size: 3rem;
     color: #ff4081;
-    text-shadow: 1px 1px 3px rgba(255, 64, 129, 0.3);
-    animation: floating 2s ease-in-out infinite;
-  }
-  
-  
-
-.deleteEntry {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    background: #ffb6c1;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 2px 6px;
-    cursor: pointer;
-    font-size: 12px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 }
-#mainContent {
-    display: none;
-    background-color: #fffae6; /* 背景色を薄い黄色に */
-    text-align: center;
-    padding: 40px;
+
+/* カードデザイン */
+.section-card {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
     border-radius: 15px;
-}
-
-header {
-    background-color: pink; /* ヘッダーの背景をピンクに */
-    padding: 30px;
-    border-radius: 40px;
-    width: 100%; /* ヘッダーが画面幅いっぱいに広がる */
-    box-sizing: border-box; /* パディングを含めて幅が100%になるように */
-}
-
-
-h1 {
-    font-size: 3rem; /* タイトルを大きく */
-    color: #ff6600; /* 文字の色をオレンジ */
-    font-weight: bold;
-}
-
-.password-section {
-    text-align: center;
-    margin-top: 40px;
-}
-
-.password-input {
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.password-button {
-    background-color: #ff66b2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.password-button:hover {
-    background-color: #ff3385;
-}
-
-
-#balanceDisplay {
-    font-size: 3rem; /* 残高表示を大きく */
-    font-weight: bold;
-    color: #008800; /* 緑色で強調 */
-}
-
-p {
-    font-size: 1.8rem; /* テキストを大きく */
-    font-weight: bold;
-    color: rgb(165, 15, 15); /* 濃いグレーで読みやすく */
-}
-
-.goal-section {
-    background-color: #fff0f6;
-    border-radius: 15px;
-    padding: 30px;
-    margin-top: 40px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    max-width: 600px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.goal-section h3 {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    font-size: 28px;
-    color: #ff66b2;
-    margin-bottom: 20px;
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.goal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.goal-button {
-    background-color: #ff66b2;
+/* ボタンのアニメーション */
+button {
+    padding: 12px 24px;
+    font-size: 18px;
+    background: linear-gradient(135deg, #ff8c00, #ff4081);
     color: white;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    font-size: 20px;
-    padding: 15px 30px;
     border: none;
-    border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.goal-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.goal-button:active {
-    transform: translateY(2px);
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.goal-description {
-    display: none;
-    font-size: 18px;
-    margin-top: 20px;
-    color: #333;
-}
-
-.small-icon {
-    width: 50px;
-    position: absolute;
-    top: 10px;
-    display: none; /* 最初は非表示 */
-  }
-  .left { left: 10px; }
-  .right { right: 10px; }
-
-  #countdownSection {
+/* カウントダウンのデザイン */
+#countdownSection, #relationshipSection, #savingGoalSection {
     border: 2px solid #ff69b4;
-    background-color: #ffe4e1;
-    padding: 10px;
-    margin: 20px 0;
-    border-radius: 10px;
-    text-align: center;
+    background-color: rgba(255, 228, 225, 0.9);
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 15px;
     font-size: 18px;
-  }
-  #relationshipSection {
-    border: 2px solid #ff1493;
-    background-color: #ffe4f0;
-    padding: 10px;
-    margin: 20px 0;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 18px;
-  }
-   #birthdayCountdownSection {
-    border: 2px solid #ffcc00;
-    background-color: #fff5cc;
-    padding: 10px;
-    margin: 20px 0;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 18px;
-  }
+    width: 80%;
+}
 
-    #savingGoalSection {
-    border: 2px solid #4CAF50;
-    background-color: #eaffea;
-    padding: 10px;
-    margin: 20px 0;
+/* 貯金目標の進捗バー */
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #ddd;
     border-radius: 10px;
-    text-align: center;
-    font-size: 18px;
-  }
-  
-  
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    width: 50%; /* JSで動的に変更 */
+    transition: width 0.5s ease-in-out;
+}
+
+/* アニメーション */
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+.animated-icon {
+    width: 30px; /* 牛とTNTの画像をさらに小さくする */
+    display: inline-block;
+    margin: 5px;
+    animation: floating 2s ease-in-out infinite;
+}
