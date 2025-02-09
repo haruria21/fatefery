@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // パスワード認証
   passwordSubmit.addEventListener("click", () => {
     const password = passwordInput.value;
-    const correctPassword = "ぶれんでん"; // 設定するパスワード
+  const correctPassword = "りあなにもできない"; // 設定するパスワード
 
     if (password === correctPassword) {
       passwordScreen.style.display = "none";
@@ -174,5 +174,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 }
   
-  
+function updateNextMeetingCountdown() {
+  const today = new Date();
+  const nextMeetingDate = new Date(today.getFullYear(), 11, 7, 0, 0, 0); // 12月7日 0時
+
+  if (today > nextMeetingDate) {
+      // 今年の再会日が過ぎた場合、翌年の再会日を設定
+      nextMeetingDate.setFullYear(today.getFullYear() + 1);
+  }
+
+  function updateCountdown() {
+      const now = new Date();
+      const timeDiff = nextMeetingDate - now;
+
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      document.getElementById("nextMeetingCountdown").textContent = `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000); // 1秒ごとに更新
+}
+
+// ページ読み込み時に実行
+updateNextMeetingCountdown();
+
 });
