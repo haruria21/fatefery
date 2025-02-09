@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // パスワード認証
   passwordSubmit.addEventListener("click", () => {
     const password = passwordInput.value;
-  const correctPassword = "りあはなにもできない"; // 設定するパスワード
+  const correctPassword = "おこってない"; // 設定するパスワード
 
     if (password === correctPassword) {
       passwordScreen.style.display = "none";
