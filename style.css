@@ -109,3 +109,82 @@ button:active {
     margin: 5px;
     animation: floating 2s ease-in-out infinite;
 }
+#nextMeetingCountdownSection {
+    border: 2px solid #4CAF50;
+    background-color: rgba(144, 238, 144, 0.9);
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 15px;
+    font-size: 18px;
+    width: 80%;
+}
+
+#nextMeetingCountdown {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2E8B57;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+/* スポンサー欄 */
+#sponsorSection {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sponsor-logos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.sponsor-logos img {
+    width: 100px; /* サイズ感を統一 */
+    height: auto;
+    object-fit: contain;
+}
+
+#birthdayCountdownSection {
+    border: 2px solid #ff69b4;
+    background-color: rgba(255, 228, 225, 0.9);
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 15px;
+    font-size: 18px;
+    width: 80%;
+}
+.memory-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.memory-gallery img {
+    width: 150px; /* すべての画像のサイズを統一 */
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
