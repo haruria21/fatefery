@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // パスワード認証
   passwordSubmit.addEventListener("click", () => {
     const password = passwordInput.value;
-  const correctPassword = "おこってない"; // 設定するパスワード
+  const correctPassword = "制服ほしい"; // 設定するパスワード
 
     if (password === correctPassword) {
       passwordScreen.style.display = "none";
@@ -202,4 +202,79 @@ function updateNextMeetingCountdown() {
 // ページ読み込み時に実行
 updateNextMeetingCountdown();
 
+  const quizContainer = document.getElementById("quiz");
+  const submitButton = document.getElementById("submit");
+  const resultContainer = document.getElementById("result");
+
+    const quizData = [
+        { 
+            question: "最初に大国町で食べたごはん？", 
+            options: ["うどん", "らーめん", "パン"], 
+            answer: "うどん" 
+        },
+        { 
+            question: "はるがこのなかで一番好きなものは？", 
+            options: ["花", "お金", "りあ"], 
+            answer: "りあ" 
+        },
+        { 
+            question: "はるが一番うざいと思うのは？", 
+            options: ["人が多い電車", "雨の日", "リアが勝手に寝る"], 
+            answer: "リアが勝手に寝る" 
+        },
+        { 
+            question: "はるがすきなキムチは？", 
+            options: ["辛いキムチ", "ちょっと甘いキムチ", "めっちゃ甘いキムチ"], 
+            answer: "ちょっと甘いキムチ" 
+        },
+        { 
+            question: "このなかで一番大事なのは？？", 
+            options: ["車", "お金", "りあ"], 
+            answer: "りあ" 
+        }
+    ];
+
+    function buildQuiz() {
+        quizContainer.innerHTML = "";
+        quizData.forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("quiz-question");
+            questionDiv.innerHTML = `<p><strong>${index + 1}. ${q.question}</strong></p>`;
+
+            q.options.forEach(option => {
+                const optionId = `q${index}_${option}`;
+                const label = document.createElement("label");
+                label.setAttribute("for", optionId);
+                label.innerHTML = `<input type="radio" id="${optionId}" name="q${index}" value="${option}"> ${option}`;
+                questionDiv.appendChild(label);
+                questionDiv.appendChild(document.createElement("br")); // 改行
+            });
+
+            quizContainer.appendChild(questionDiv);
+        });
+    }
+
+    function checkAnswers() {
+        let score = 0;
+        quizData.forEach((q, index) => {
+            const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+            if (selectedOption) {
+                if (selectedOption.value === q.answer) {
+                    score++;
+                    selectedOption.parentElement.style.color = "green"; // 正解は緑
+                } else {
+                    selectedOption.parentElement.style.color = "red"; // 不正解は赤
+                }
+                // すべての選択肢を無効化
+                document.querySelectorAll(`input[name="q${index}"]`).forEach(input => {
+                    input.disabled = true;
+                });
+            }
+        });
+        resultContainer.innerText = `あなたのスコア: ${score}/${quizData.length}`;
+        
+      }
+
+    submitButton.addEventListener("click", checkAnswers);
+    buildQuiz();
 });
