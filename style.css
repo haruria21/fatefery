@@ -6,12 +6,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7); /* ピンクのグラデーション背景 */
-    color: #333;
-    text-align: center;
-}
 
 /* ヘッダーのデザイン強化 */
 header {
@@ -271,4 +265,72 @@ button#submit:hover {
     color: #d32f2f;
     margin-top: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #e3f2fd;
+}
+
+h1 {
+    color: #0277bd;
+}
+
+#scoreInputContainer {
+    background: #b3e5fc;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+input {
+    padding: 5px;
+    margin-left: 5px;
+}
+
+button {
+    background-color: #0277bd;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #01579b;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin: 5px auto;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.deleteButton {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
 }
