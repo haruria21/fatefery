@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContent = document.getElementById("mainContent");
   const balanceDisplay = document.getElementById("balanceDisplay");
 
+  const dateInput = document.getElementById("dateInput");
+      const scoreInput = document.getElementById("scoreInput");
+      const addScoreButton = document.getElementById("addScoreButton");
+      const scoreList = document.getElementById("scoreList");
+
   // パスワード表示/非表示切替
   togglePassword.addEventListener("click", () => {
     passwordInput.type = passwordInput.type === "password" ? "text" : "password";
@@ -208,29 +213,29 @@ updateNextMeetingCountdown();
 
     const quizData = [
         { 
-            question: "最初に大国町で食べたごはん？", 
-            options: ["うどん", "らーめん", "パン"], 
-            answer: "うどん" 
+            question: "おおさかふみんチャンネルのsubの数は？", 
+            options: ["17k", "18k", "19k"], 
+            answer: "18k" 
         },
         { 
-            question: "はるがこのなかで一番好きなものは？", 
-            options: ["花", "お金", "りあ"], 
-            answer: "りあ" 
+            question: "なぜはるはこのウェブサイトを作ってる？", 
+            options: ["練習のため", "リアが喜ぶから", "暇だから"], 
+            answer: "リアが喜ぶから" 
         },
         { 
-            question: "はるが一番うざいと思うのは？", 
-            options: ["人が多い電車", "雨の日", "リアが勝手に寝る"], 
-            answer: "リアが勝手に寝る" 
+            question: "きょうはるがバーガーに送ったメッセージは？？", 
+            options: ["おはよう", "リアを早くかえるにして", "りあの写真を送って"], 
+            answer: "りあの写真を送って" 
         },
         { 
-            question: "はるがすきなキムチは？", 
-            options: ["辛いキムチ", "ちょっと甘いキムチ", "めっちゃ甘いキムチ"], 
-            answer: "ちょっと甘いキムチ" 
+            question: "なんで今日何もあたらしいことがこのウェブサイトにふえてない？", 
+            options: ["時間がなかったから", "もうあきたから", "うまくできなかったから"], 
+            answer: "うまくできなかったから" 
         },
         { 
-            question: "このなかで一番大事なのは？？", 
-            options: ["車", "お金", "りあ"], 
-            answer: "りあ" 
+            question: "今日一番時間を使ったことは？", 
+            options: ["haruria.com", "ethchokin.com", "ninja wallet"], 
+            answer: "ninja wallet" 
         }
     ];
 
@@ -277,4 +282,50 @@ updateNextMeetingCountdown();
 
     submitButton.addEventListener("click", checkAnswers);
     buildQuiz();
-});
+  
+    
+  
+      let scores = JSON.parse(localStorage.getItem("scores")) || [];
+  
+      function updateScoreList() {
+          scoreList.innerHTML = "";
+  
+          scores.forEach((entry, index) => {
+              const listItem = document.createElement("li");
+              listItem.innerHTML = `
+                  ${entry.date} - 🎯 ${entry.score}点
+                  <button class="deleteButton" onclick="deleteScore(${index})">🗑️</button>
+              `;
+              scoreList.appendChild(listItem);
+          });
+  
+          localStorage.setItem("scores", JSON.stringify(scores));
+      }
+  
+      function addScore() {
+          const date = dateInput.value;
+          const score = parseInt(scoreInput.value, 10);
+  
+          if (!date || isNaN(score)) {
+              alert("⚠️ 日付とスコアを入力してください！");
+              return;
+          }
+  
+          scores.push({ date, score });
+  
+          dateInput.value = "";
+          scoreInput.value = "";
+  
+          updateScoreList();
+      }
+  
+      window.deleteScore = (index) => {
+          scores.splice(index, 1);
+          updateScoreList();
+      };
+  
+      addScoreButton.addEventListener("click", addScore);
+      updateScoreList();
+  });
+  
+;
