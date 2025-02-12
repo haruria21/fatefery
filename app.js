@@ -210,32 +210,33 @@ updateNextMeetingCountdown();
   const quizContainer = document.getElementById("quiz");
   const submitButton = document.getElementById("submit");
   const resultContainer = document.getElementById("result");
+  const scoreHistoryContainer = document.getElementById("scoreHistory");
 
     const quizData = [
         { 
-            question: "おおさかふみんチャンネルのsubの数は？", 
-            options: ["17k", "18k", "19k"], 
-            answer: "18k" 
+            question: "haruria.comにきょうなんじかんつかった？", 
+            options: ["1時間", "1時間30分", "2時間"], 
+            answer: "1時間30分" 
         },
         { 
-            question: "なぜはるはこのウェブサイトを作ってる？", 
-            options: ["練習のため", "リアが喜ぶから", "暇だから"], 
-            answer: "リアが喜ぶから" 
+            question: "今日おもいでなんこふえた？", 
+            options: ["１", "２", "３"], 
+            answer: "３" 
         },
         { 
-            question: "きょうはるがバーガーに送ったメッセージは？？", 
-            options: ["おはよう", "リアを早くかえるにして", "りあの写真を送って"], 
-            answer: "りあの写真を送って" 
+            question: "はるがきょうほしいのは", 
+            options: ["せいふくとくろいの", "せいふくだけ", "おとだけ"], 
+            answer: "せいふくとくろいの" 
         },
         { 
-            question: "なんで今日何もあたらしいことがこのウェブサイトにふえてない？", 
-            options: ["時間がなかったから", "もうあきたから", "うまくできなかったから"], 
-            answer: "うまくできなかったから" 
+            question: "クイズのとき何がいちばんうれしい？", 
+            options: ["りあが５てんだったとき", "おわったあとにしゃしんをとってくれるとき", "がんばってかんがえてくれるとき"], 
+            answer: "おわったあとにしゃしんをとってくれるとき" 
         },
         { 
-            question: "今日一番時間を使ったことは？", 
-            options: ["haruria.com", "ethchokin.com", "ninja wallet"], 
-            answer: "ninja wallet" 
+            question: "はるのさいきんのいやなことは？", 
+            options: ["おかねがへってきた", "よるうまくねれない", "ビザがめんどくさい"], 
+            answer: "おかねがへってきた" 
         }
     ];
 
@@ -276,9 +277,24 @@ updateNextMeetingCountdown();
                 });
             }
         });
+        const today = new Date();
+        const formattedDate = `${today.getFullYear()}/${(today.getMonth() + 1).toString().padStart(2, "0")}/${today.getDate().toString().padStart(2, "0")}`;
+        
         resultContainer.innerText = `あなたのスコア: ${score}/${quizData.length}`;
+
+        scoreHistoryContainer.innerHTML = ""; 
+        addScoreToHistory(formattedDate, score);
         
       }
+      function addScoreToHistory(date, score) {
+        const listItem = document.createElement("p");
+        listItem.textContent = `${date}  ${score}点`;
+        scoreHistoryContainer.appendChild(listItem);
+    }
+
+    submitButton.addEventListener("click", checkAnswers);
+    buildQuiz();
+});
 
     submitButton.addEventListener("click", checkAnswers);
     buildQuiz();
@@ -326,6 +342,6 @@ updateNextMeetingCountdown();
   
       addScoreButton.addEventListener("click", addScore);
       updateScoreList();
-  });
+  ;
   
 ;
