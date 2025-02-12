@@ -34,6 +34,7 @@ h1 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+
 .section-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
@@ -62,9 +63,13 @@ button:active {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
+
+
 /* カウントダウンのデザイン */
-#countdownSection, #relationshipSection, #savingGoalSection {
+#countdownSection, #birthdayCountdownSection,#relationshipSection, #savingGoalSection {
     border: 2px solid #ff69b4;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
     background-color: rgba(255, 228, 225, 0.9);
     padding: 15px;
     margin: 20px auto;
@@ -72,6 +77,12 @@ button:active {
     font-size: 18px;
     width: 80%;
 }
+
+#countdownSection:hover, #birthdayCountdownSection:hover, #relationshipSection:hover, #savingGoalSection:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 5px 12px rgba(255, 105, 180, 0.4);
+}
+
 
 /* 貯金目標の進捗バー */
 .progress-bar {
@@ -91,11 +102,72 @@ button:active {
 }
 
 /* アニメーション */
-@keyframes floating {
+@keyframes balanceScroll {
+    0% { transform: translateX(100%); opacity: 0.5; }
+    50% { transform: translateX(0%); opacity: 1; }
+    100% { transform: translateX(-100%); opacity: 0.5; }
+}
+#balanceDisplay {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4CAF50;
+    background: linear-gradient(135deg, #a8ff78, #78ffd6);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 5px rgba(0, 128, 0, 0.3);
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: balanceScroll 5s linear infinite;
+}
+/* 🌸 「最後に会った日」のデザイン */
+.last-met-date, .last-met-count {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF4081;
+    background: #FFF3F7;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 2px 2px 5px rgba(255, 105, 180, 0.2);
+    margin-bottom: 10px;
+}
+
+/* 🎀 次の再会カウントダウン タイトル */
+/* 🎀 次の再会カウントダウン タイトル */
+.countdown-title {
+    font-family: 'Fredoka One', cursive; /* かわいいフォント */
+    font-size: 26px;
+    background: linear-gradient(135deg, #FF8C00, #FF4081); /* オレンジ→ピンクのグラデーション */
+    background-clip: text; /* 標準プロパティ */
+ /* SafariやChrome用に文字を透明に */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* ちょっと影をつけて読みやすく */
+    text-align: center;
+    margin-bottom: 15px;
+    animation: titleFloat 3s ease-in-out infinite; /* 🎈 ふわふわアニメーション */
+}
+
+/* 🎈 タイトルをふわっと動かすアニメーション */
+@keyframes titleFloat {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-5px); }
     100% { transform: translateY(0px); }
 }
+
+
+/* 🕒 カウントダウンの日付 */
+.next-meeting-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: #0277BD;
+    background: #E3F2FD;
+    padding: 12px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 
 .animated-icon {
     width: 30px; /* 牛とTNTの画像をさらに小さくする */
@@ -103,22 +175,34 @@ button:active {
     margin: 5px;
     animation: floating 2s ease-in-out infinite;
 }
-#nextMeetingCountdownSection {
-    border: 2px solid #4CAF50;
-    background-color: rgba(144, 238, 144, 0.9);
-    padding: 15px;
-    margin: 20px auto;
-    border-radius: 15px;
-    font-size: 18px;
-    width: 80%;
+/* ⏳ 次に会うまでのカウントダウン (黄色ベース) */
+/* ⏳ 次に会うまでのカウントダウン (タイトルを黒に) */
+
+/* 🎈 タイトルがふわっと上下に動く */
+@keyframes titleBounce {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0px); }
+}
+#nextMeetingCountdownSection h2 {
+    color: #000000 !important; /* 完全な黒に固定 */
+    text-shadow: none !important; /* 他の影の影響を消す */
 }
 
+
+
+/* 🌟 カウントダウンの数字のスタイル */
 #nextMeetingCountdown {
     font-size: 24px;
     font-weight: bold;
-    color: #2E8B57;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: #FF8F00;
+    text-shadow: 2px 2px 5px rgba(255, 145, 0, 0.3);
+    animation: pulseText 1.5s infinite alternate; /* ふわっと光るアニメーション */
 }
+
+
+
+
 
 .left {
     position: absolute;
@@ -159,15 +243,6 @@ button:active {
     object-fit: contain;
 }
 
-#birthdayCountdownSection {
-    border: 2px solid #ff69b4;
-    background-color: rgba(255, 228, 225, 0.9);
-    padding: 15px;
-    margin: 20px auto;
-    border-radius: 15px;
-    font-size: 18px;
-    width: 80%;
-}
 .memory-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -265,6 +340,27 @@ button#submit:hover {
     color: #d32f2f;
     margin-top: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+#scoreHistory {
+    background: #fff3f7;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    color: #ff4081; /* 明るいピンク */
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(255, 105, 180, 0.2);
+    margin-top: 10px;
+}
+
+#scoreHistory p {
+    background: #ffe0ec;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 5px auto;
+    width: 80%;
+    font-size: 18px;
+    font-weight: bold;
 }
 body {
     font-family: Arial, sans-serif;
