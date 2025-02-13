@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const scoreInput = document.getElementById("scoreInput");
       const addScoreButton = document.getElementById("addScoreButton");
       const scoreList = document.getElementById("scoreList");
+      
 
   // パスワード表示/非表示切替
   togglePassword.addEventListener("click", () => {
@@ -209,34 +210,35 @@ updateNextMeetingCountdown();
 
   const quizContainer = document.getElementById("quiz");
   const submitButton = document.getElementById("submit");
+  const closeButton = document.getElementById("closeQuiz");
   const resultContainer = document.getElementById("result");
   const scoreHistoryContainer = document.getElementById("scoreHistory");
 
     const quizData = [
         { 
-            question: "haruria.comにきょうなんじかんつかった？", 
-            options: ["1時間", "1時間30分", "2時間"], 
-            answer: "1時間30分" 
+            question: "はるのきょうのちょうしは？", 
+            options: ["よくない", "ふつう", "いい"], 
+            answer: "よくない" 
         },
         { 
-            question: "今日おもいでなんこふえた？", 
-            options: ["１", "２", "３"], 
-            answer: "３" 
+            question: "それはなぜ？", 
+            options: ["よくねてない", "うまくつくれなかった", "あめがふってた"], 
+            answer: "よくねてない" 
         },
         { 
-            question: "はるがきょうほしいのは", 
-            options: ["せいふくとくろいの", "せいふくだけ", "おとだけ"], 
-            answer: "せいふくとくろいの" 
+            question: "今日なぜこのウェブサイトがあまりかわっていない？", 
+            options: ["あきたから", "なにをしたらいいかわからなかったから", "このサイトをする前にいつもしてるサッカーのゲームがアプデだったから"], 
+            answer: "このサイトをする前にいつもしてるサッカーのゲームがアプデだったから" 
         },
         { 
-            question: "クイズのとき何がいちばんうれしい？", 
-            options: ["りあが５てんだったとき", "おわったあとにしゃしんをとってくれるとき", "がんばってかんがえてくれるとき"], 
+            question: "なぜはるはninja walletをはじめた？", 
+            options: ["ひまだったから", "プライバシーはまもられるべきだから", "りあがよろこぶから"], 
             answer: "おわったあとにしゃしんをとってくれるとき" 
         },
         { 
-            question: "はるのさいきんのいやなことは？", 
-            options: ["おかねがへってきた", "よるうまくねれない", "ビザがめんどくさい"], 
-            answer: "おかねがへってきた" 
+            question: "はるの今日のかなしかったことは？", 
+            options: ["おきたときにあたまがいたかった", "あさりあのラインがなかった", "あさおきたらおかながいたかった"], 
+            answer: "あさりあのラインがなかった" 
         }
     ];
 
@@ -284,15 +286,26 @@ updateNextMeetingCountdown();
 
         scoreHistoryContainer.innerHTML = ""; 
         addScoreToHistory(formattedDate, score);
+
+        closeButton.style.display = "inline-block";
         
       }
-      function addScoreToHistory(date, score) {
+      
+        function addScoreToHistory(date, score) {
         const listItem = document.createElement("p");
         listItem.textContent = `${date}  ${score}点`;
         scoreHistoryContainer.appendChild(listItem);
     }
+    function closeQuiz() {
+      resultContainer.innerText = "";
+      closeButton.style.display = "none"; // 🔹 「閉じる」ボタンを隠す
+      scoreHistory.style.display = "block"; 
+      
+  }
+
 
     submitButton.addEventListener("click", checkAnswers);
+    closeButton.addEventListener("click", closeQuiz);
     buildQuiz();
 });
 
