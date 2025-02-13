@@ -168,6 +168,26 @@ button:active {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+#closeQuiz {
+    background-color: #d32f2f;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#closeQuiz:hover {
+    background-color: #b71c1c;
+    transform: scale(1.05);
+}
+
+
 
 .animated-icon {
     width: 30px; /* 牛とTNTの画像をさらに小さくする */
