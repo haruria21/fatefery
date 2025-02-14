@@ -217,28 +217,28 @@ updateNextMeetingCountdown();
     const quizData = [
         { 
             question: "はるのきょうのちょうしは？", 
-            options: ["よくない", "ふつう", "いい"], 
-            answer: "よくない" 
+            options: ["いい", "とてもいい", "すごくいい！"], 
+            answer: "すごくいい！" 
         },
         { 
             question: "それはなぜ？", 
-            options: ["よくねてない", "うまくつくれなかった", "あめがふってた"], 
-            answer: "よくねてない" 
+            options: ["よくねた", "ゆうめいじんがおおさかふみんちゃんねるみた", "どっちも"], 
+            answer: "どっちも" 
         },
         { 
-            question: "今日なぜこのウェブサイトがあまりかわっていない？", 
-            options: ["あきたから", "なにをしたらいいかわからなかったから", "このサイトをする前にいつもしてるサッカーのゲームがアプデだったから"], 
-            answer: "このサイトをする前にいつもしてるサッカーのゲームがアプデだったから" 
+            question: "今日昼何食べた？", 
+            options: ["パン", "ごはん", "ネギをいっぱい入れたうどん"], 
+            answer: "ネギをいっぱい入れたうどん" 
         },
         { 
-            question: "なぜはるはninja walletをはじめた？", 
-            options: ["ひまだったから", "プライバシーはまもられるべきだから", "りあがよろこぶから"], 
-            answer: "おわったあとにしゃしんをとってくれるとき" 
+            question: "どれがいちばんすき", 
+            options: ["せいふくとくろいの", "げんきなりあ", "いっぱいほめてくれたとき"], 
+            answer: "げんきなりあ" 
         },
         { 
-            question: "はるの今日のかなしかったことは？", 
-            options: ["おきたときにあたまがいたかった", "あさりあのラインがなかった", "あさおきたらおかながいたかった"], 
-            answer: "あさりあのラインがなかった" 
+            question: "つぎあったときはるいちばんがりあとしたいことは？", 
+            options: ["いっしょにやくにくを食べる", "プリズンブレイクを全部見る", "いっしょにあそぶ"], 
+            answer: "いっしょにあそぶ" 
         }
     ];
 
@@ -262,34 +262,90 @@ updateNextMeetingCountdown();
         });
     }
 
+    const contractAddress = "0xE3Bb748688ef32dD48cC7Aab37F1eBB234F982A8"; // HARU トークンのコントラクトアドレス
+const haruWallet = "0xe8319F34F481c1AdDb95Bbd6Ff0237590EbF7CBf"; // ここにHARUが入るウォレットアドレスを指定
+
+const abi = [
+    {
+        "inputs": [
+            { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+];
+
+// 🔹 ウォレットのHARU残高を取得して表示
+async function updateWalletBalance() {
+  if (!window.ethereum) {
+      console.error("❌ MetaMaskがインストールされていません！");
+      return;
+  }
+
+  console.log("✅ updateWalletBalance() が実行されました！");
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const contract = new ethers.Contract(contractAddress, abi, provider);
+
+  try {
+      console.log("🔹 HARUウォレットアドレス:", haruWallet);
+      const balance = await contract.balanceOf(haruWallet);
+      console.log("🔹 HARU トークン残高:", balance.toString());
+
+      const formattedBalance = ethers.utils.formatUnits(balance, 18); // HARUの小数点を調整
+      document.getElementById("walletBalance").innerText = `ウォレット残高: ${formattedBalance} HARU`;
+  } catch (error) {
+      console.error("❌ ウォレット残高の取得に失敗:", error);
+  }
+}
+
+
+
+
+
     function checkAnswers() {
-        let score = 0;
-        quizData.forEach((q, index) => {
-            const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
-            if (selectedOption) {
-                if (selectedOption.value === q.answer) {
-                    score++;
-                    selectedOption.parentElement.style.color = "green"; // 正解は緑
-                } else {
-                    selectedOption.parentElement.style.color = "red"; // 不正解は赤
-                }
-                // すべての選択肢を無効化
-                document.querySelectorAll(`input[name="q${index}"]`).forEach(input => {
-                    input.disabled = true;
-                });
-            }
-        });
-        const today = new Date();
-        const formattedDate = `${today.getFullYear()}/${(today.getMonth() + 1).toString().padStart(2, "0")}/${today.getDate().toString().padStart(2, "0")}`;
-        
-        resultContainer.innerText = `あなたのスコア: ${score}/${quizData.length}`;
-
-        scoreHistoryContainer.innerHTML = ""; 
-        addScoreToHistory(formattedDate, score);
-
-        closeButton.style.display = "inline-block";
-        
+      let correctAnswers = 0;
+  
+      quizData.forEach((q, index) => {
+          const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+          if (selectedOption) {
+              if (selectedOption.value === q.answer) {
+                  correctAnswers++;
+                  selectedOption.parentElement.style.color = "green"; // 正解は緑
+              } else {
+                  selectedOption.parentElement.style.color = "red"; // 不正解は赤
+              }
+              document.querySelectorAll(`input[name="q${index}"]`).forEach(input => {
+                  input.disabled = true;
+              });
+          }
+      });
+  
+      // 🔹 `rewardUser()` を実行（クイズ終了後にHARUを配布）
+      if (typeof rewardUser === "function") {
+          rewardUser(correctAnswers)
+              .then(() => {
+                  document.getElementById("distributedTotal").innerText = `今回の配布: ${correctAnswers} HARU`;
+                  updateWalletBalance(); // 🔹 ウォレットのHARU残高を更新
+              })
+              .catch(error => {
+                  console.error("❌ トークン送信エラー:", error);
+              });
+      } else {
+          console.error("❌ `rewardUser()` が見つかりません！");
       }
+  
+      const formattedDate = `${new Date().getFullYear()}/${(new Date().getMonth() + 1).toString().padStart(2, "0")}/${new Date().getDate().toString().padStart(2, "0")}`;
+      
+      resultContainer.innerText = `あなたのスコア: ${correctAnswers}/${quizData.length}`;
+      closeButton.style.display = "inline-block";
+  }
+  
+    
       
         function addScoreToHistory(date, score) {
         const listItem = document.createElement("p");
