@@ -414,6 +414,15 @@ button {
     border-radius: 5px;
 }
 
+.haru {
+    font-weight: bold;
+    color: lightblue; /* ゴールドカラー */
+    background-color: hsl(0, 20%, 96%);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
 button:hover {
     background-color: #01579b;
 }
@@ -422,6 +431,19 @@ ul {
     list-style-type: none;
     padding: 0;
 }
+
+.haru-blue {
+    font-weight: bold;
+    font-size: 32px; /* さらに大きく！ */
+    background: linear-gradient(135deg, #00ccff, #0066ff); /* 水色→青のグラデーション */
+    background-clip: text; /* 標準のプロパティを追加 */
+    -webkit-background-clip: text; /* 古いブラウザ対応 */
+    -webkit-text-fill-color: transparent;
+    padding: 5px 15px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
 
 li {
     background: white;
