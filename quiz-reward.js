@@ -1,4 +1,5 @@
 const contractAddress = "0xE3Bb748688ef32dD48cC7Aab37F1eBB234F982A8"; // HARU トークンのコントラクトアドレス
+const haruWallet = "0xe8319F34F481c1AdDb95Bbd6Ff0237590EbF7CBf"; // ここにHARUが入るウォレットアドレスを指定
 
 const abi = [
     {
@@ -23,19 +24,7 @@ async function rewardUser(correctAnswers) {
     console.log("✅ rewardUser() が実行されました！送信するスコア:", correctAnswers);
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, abi, signer);
+    const network = await provider.getNetwork();
 
-    try {
-        const userAddress = await signer.getAddress();
-        console.log("🔹 ユーザーアドレス:", userAddress);
-        console.log("🔹 コントラクトアドレス:", contractAddress);
-
-        const tx = await contract.rewardWinner(userAddress, correctAnswers);
-        await tx.wait();
-        alert(`🎉 ${correctAnswers} HARU を受け取りました！`);
-    } catch (error) {
-        console.error("❌ トークン送信エラー:", error);
-    }
 }
 
