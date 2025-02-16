@@ -216,29 +216,29 @@ updateNextMeetingCountdown();
 
     const quizData = [
         { 
-            question: "はるのきょうのちょうしは？", 
+            question: "はるのきげんは？？", 
             options: ["いい", "とてもいい", "すごくいい！"], 
             answer: "すごくいい！" 
         },
         { 
             question: "それはなぜ？", 
-            options: ["よくねた", "ゆうめいじんがおおさかふみんちゃんねるみた", "どっちも"], 
-            answer: "どっちも" 
+            options: ["よくねた", "きのううれしいがきもいいだったから", "いまりあとはなしてるから"], 
+            answer: "きのううれしいがきもいいだったから" 
         },
         { 
-            question: "今日昼何食べた？", 
-            options: ["パン", "ごはん", "ネギをいっぱい入れたうどん"], 
+            question: "はるはたんじょうびになにほしい", 
+            options: ["りあがくれたもの", "ふつうのプレゼント", "くるま"], 
             answer: "ネギをいっぱい入れたうどん" 
         },
         { 
             question: "どれがいちばんすき", 
-            options: ["せいふくとくろいの", "げんきなりあ", "いっぱいほめてくれたとき"], 
-            answer: "げんきなりあ" 
+            options: ["せいふくとくろいの", "おいしいあさごはん", "よくねれたひ"], 
+            answer: "せいふくとくろいの" 
         },
         { 
-            question: "つぎあったときはるいちばんがりあとしたいことは？", 
-            options: ["いっしょにやくにくを食べる", "プリズンブレイクを全部見る", "いっしょにあそぶ"], 
-            answer: "いっしょにあそぶ" 
+            question: "はるのすきなものは", 
+            options: ["めいくをみてるとき", "いっしょにプリズンブレイクを全部見る", "あさおきてでんわしたらりあのこえがあるとき"], 
+            answer: "あさおきてでんわしたらりあのこえがあるとき" 
         }
     ];
 
@@ -262,46 +262,463 @@ updateNextMeetingCountdown();
         });
     }
 
-    const contractAddress = "0xE3Bb748688ef32dD48cC7Aab37F1eBB234F982A8"; // HARU トークンのコントラクトアドレス
-const haruWallet = "0xe8319F34F481c1AdDb95Bbd6Ff0237590EbF7CBf"; // ここにHARUが入るウォレットアドレスを指定
-
-const abi = [
-    {
+    const contractAddress = "0xd2c8dbfe2CBB067B1Da646D58BE6a8d9239bdBCF"; // HARU トークンのコントラクトアドレス
+    const haruWallet = "0x073BAee27903de0EC8016CAf82F2EFD975168F1C"; // ここにHARUが入るウォレットアドレスを指定
+    
+    [
+      {
         "inputs": [
-            { "internalType": "address", "name": "account", "type": "address" }
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
         ],
-        "name": "balanceOf",
+        "name": "approve",
         "outputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "initialOwner",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "allowance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "needed",
+            "type": "uint256"
+          }
+        ],
+        "name": "ERC20InsufficientAllowance",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "balance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "needed",
+            "type": "uint256"
+          }
+        ],
+        "name": "ERC20InsufficientBalance",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "approver",
+            "type": "address"
+          }
+        ],
+        "name": "ERC20InvalidApprover",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "receiver",
+            "type": "address"
+          }
+        ],
+        "name": "ERC20InvalidReceiver",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+          }
+        ],
+        "name": "ERC20InvalidSender",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          }
+        ],
+        "name": "ERC20InvalidSpender",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnableInvalidOwner",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "OwnableUnauthorizedAccount",
+        "type": "error"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "Approval",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_winner",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_correctAnswers",
+            "type": "uint256"
+          }
+        ],
+        "name": "rewardWinner",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "Transfer",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          }
+        ],
+        "name": "allowance",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
         ],
         "stateMutability": "view",
         "type": "function"
-    }
-];
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [
+          {
+            "internalType": "uint8",
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_user",
+            "type": "address"
+          }
+        ],
+        "name": "getUserScore",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "userScores",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ]
+    
 
 // 🔹 ウォレットのHARU残高を取得して表示
-async function updateWalletBalance() {
-  if (!window.ethereum) {
-      console.error("❌ MetaMaskがインストールされていません！");
-      return;
-  }
-
-  console.log("✅ updateWalletBalance() が実行されました！");
-
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const contract = new ethers.Contract(contractAddress, abi, provider);
-
-  try {
-      console.log("🔹 HARUウォレットアドレス:", haruWallet);
-      const balance = await contract.balanceOf(haruWallet);
-      console.log("🔹 HARU トークン残高:", balance.toString());
-
-      const formattedBalance = ethers.utils.formatUnits(balance, 18); // HARUの小数点を調整
-      document.getElementById("walletBalance").innerText = `ウォレット残高: ${formattedBalance} HARU`;
-  } catch (error) {
-      console.error("❌ ウォレット残高の取得に失敗:", error);
-  }
-}
 
 
 
@@ -329,7 +746,7 @@ async function updateWalletBalance() {
       if (typeof rewardUser === "function") {
           rewardUser(correctAnswers)
               .then(() => {
-                  document.getElementById("distributedTotal").innerText = `今回の配布: ${correctAnswers} HARU`;
+                  document.getElementById("distributedTotal").innerText = `こんかいもらう: ${correctAnswers} HARU`;
                   updateWalletBalance(); // 🔹 ウォレットのHARU残高を更新
               })
               .catch(error => {
