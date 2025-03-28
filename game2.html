@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>ステージ2 - シンガポール</title>
+  <link rel="stylesheet" href="game-style.css" />
+</head>
+<body>
+  <!-- ステージ名＆コイン表示 -->
+  <div id="stageName">Stage 2 - Singapore</div>
+  <div id="haruCounterArea">
+    <span id="haruCounter">haru: 0</span>
+    <button id="resetHaruBtn">🔄 リセット</button>
+  </div>
+
+  <!-- 戻る＆マップボタン -->
+  <div id="navButtons">
+    <button onclick="goBackStage()">⬅ 戻る</button>
+    <button onclick="location.href='map.html'">🗺 マップへ</button>
+  </div>
+  <button class="haru-btn bottom-right" onclick="location.href='haru-coin.html'">💰 how to use haru-coin</button>
+
+  <div id="gameArea" style="background-image: url('https://res.klook.com/image/upload/q_85/c_fill,w_750/v1671176454/blog/vsf4aq6u69t5zfbgc28i.jpg'); background-size: cover; background-position: center;">
+    <div id="player"></div>
+
+    <!-- コイン -->
+    <div class="coin" data-id="g2c1"style="left: 300px; top: 180px;" data-memory="🧋 タピオカを飲んだ！"></div>
+    <div class="coin" data-id="g2c2"style="left: 600px; top: 250px;" data-memory="🌉 マリーナベイサンズが綺麗！"></div>
+    <div class="coin" data-id="g2c3"style="left: 950px; top: 120px;" data-memory="🛍️ お土産も買えた！"></div>
+
+    <!-- 吹き出し -->
+    <div id="coinMessage" style="display: none;">
+      <span id="coinMessageText">🪙</span>
+      <button id="closeCoinMsg">×</button>
+    </div>
+
+    <!-- ゴール -->
+    <div id="goal" style="display: none;">🏁</div>
+  </div>
+
+  <!-- スタート説明画面 -->
+  <div id="introBox">
+    <div class="intro-content">
+      <h2>🛫 Stage 2 - Singapore</h2>
+      <p>Collect all haru coins and reach the goal!</p>
+      <button id="startBtn">OK</button>
+    </div>
+  </div>
+
+  <!-- クリア画面 -->
+  <div id="clearBox" style="display: none;">
+    <div class="clear-content">
+      <h2>🎉 Stage Clear!</h2>
+      <p id="memoryText">思い出：</p>
+      <button id="nextStageBtn">次へ ➡️</button>
+    </div>
+  </div>
+
+  <script src="game-script.js"></script>
+</body>
+</html>

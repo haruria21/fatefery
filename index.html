@@ -5,40 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Haruria.com</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.0/dist/ethers.umd.min.js"></script>
-<script src="quiz-reward.js"></script>  <!-- 🔹 `app.js` の前に読み込む -->
-<script src="app.js"></script>
-
-  
-
-
+ <script src="quiz-reward.js"></script>  <!-- 🔹 `app.js` の前に読み込む -->
+ <script src="app.js"></script>
 
 
 </head>
-<body>
-  <!-- パスワード入力画面 -->
-  <div id="passwordScreen">
-    <h2>パスワードを入力してください</h2>
-    <input type="password" id="passwordInput" placeholder="パスワード">
-    <button id="togglePassword">表示</button>
-    <button id="passwordSubmit">送信</button>
-    <p id="passwordError" style="color: red; display: none;">パスワードが間違っています</p>
-  </div>
 
-  <!-- 最後に会った日 -->
-  <!-- MetaMask連携画面 -->
-  <div id="metaMaskScreen" style="display: none;">
-    <h2>MetaMaskと連携してください</h2>
-    <button id="connectMetaMask">MetaMaskと連携</button>
-    <p id="metaMaskError" style="color: red; display: none;"></p>
-  </div>
+
+</body>
+ <!-- パスワード画面 -->
+ <div id="passwordScreen">
+  <h2>パスワードを入力してください</h2>
+  <input type="password" id="passwordInput" placeholder="パスワード">
+  <button id="submitPassword">送信</button>
+  <p id="passwordError">パスワードが間違っています</p>
+ </div>
+
+
 
   <!-- メインコンテンツ -->
-  <div id="mainContent" style="display: none;">
+  <div id="mainContent">
     <header>
       <h1>Haruria.com 2/4</h1>
-      <div id="balanceDisplay"></div>
     </header>
     <img src="https://minecraft.wiki/images/TNT_JE3_BE2.png?62989" alt="tnt" class="left">
     <img src="https://frame-illust.com/fi/wp-content/uploads/2017/03/9512.png" alt="牛" class="right">
@@ -64,20 +53,13 @@
       <p>記念日 (12月7日) まで: <span id="anniversaryCountdown"></span></p>
     </div>
     <!-- 付き合った日と経過日数 -->
-<div id="relationshipSection">
+ <div id="relationshipSection">
   <h2>💖 付き合い始めた日 💖</h2>
   <p>開始日: <strong>2021年12月7日</strong></p>
   <p>付き合ってから: <span id="relationshipDays"></span> 日</p>
-</div>
-<!-- 貯金目標セクション -->
-<div id="savingGoalSection">
-  <h2>💰 貯金目標 💰</h2>
-  <p>目標額: 1000 AUD</p>
-  <p>現在の貯金: <span id="currentSavings">0</span> AUD</p>
-  <p>あと <span id="remainingSavings"></span> AUD で達成！</p>
-  <p>目標額を達成した場合: <span id="goalStatus"></span></p> <!-- 新しい表示部分 -->
-</div>
-<div id="memoriesSection">
+ </div>
+
+ <div id="memoriesSection">
   <h2>思い出たち！</h2>
   <div class="memory-gallery">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3sg9gxeN8S_r1wO4SBlAZXeKWe3XWicLHx5pOqBEKRa8Zr0HtL1_GX_uQB9fCnNHoVmw&usqp=CAU" alt="思い出1">
@@ -97,41 +79,18 @@
     <img src="https://chie-pctr.c.yimg.jp/dk/iwiz-chie/que-11253034916?w=999&h=999&up=0">
     <img src="https://images.keizai.biz/namba_keizai/headline/1414381497_photo.jpg">
   </div>
-</div>
+ </div>
        
 
-<div id="quizSection">
-  <h1>haruria.com quiz 6</h1>
-  <div id="quiz"></div>
-  <button id="submit">こたえる</button>
-  <button id="closeQuiz" style="display: none;">閉じる</button>
-  <p id="result"></p>
-  <div id="distributionSection">
-    <h2>🌟HARU ウォレットじょうほう</h2>
-    <p id="distributedTotal">こんかいのもらう: 0 HARU</p>
-    <p>ウォレットぜんぶ: <span class="haru-blue">22 HARU</span></p>
-</div>
-
-
-
-</div>
-
-  <div id="scoreHistory">
-    <p>2月10日　5/5　<span class="haru">5 HARU</span>　えらい！</p>
-    <p>2月11日　5/5　<span class="haru">5 HARU</span>　えらい！</p>
-    <p>2月12日　3/5　<span class="haru">3 HARU</span>　ゴミ</p>
-    <p>2月13日　4/5　<span class="haru">4 HARU</span>　まあまあ</p>
-    <p>2月14日　5/5　<span class="haru">5 HARU</span>　えらい！</p>
-    
-
-  </div>
+<!-- クイズへ移動するボタン -->
+<div id="quizButtonBox" style="text-align: center; margin-top: 40px;">
+  <button onclick="location.href='quiz.html'" class="quiz-btn">🧠 今日のクイズに挑戦！</button>
 </div>
 
 
 
   <!-- Web3.js の読み込み -->
-  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
-  <script src="app.js"></script>
+ </script>
 </body>
 
 

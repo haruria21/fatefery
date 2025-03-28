@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>ステージ1 - パース</title>
+  <link rel="stylesheet" href="game-style.css" />
+</head>
+<body>
+    <div id="stageLabel">Stage 1 - Perth</div>
+    <!-- HARUコインカウント表示 -->
+    <div id="haruCounterArea">
+      <span id="haruCounter">haru: 0</span>
+      <button id="resetHaruBtn">🔄 リセット</button>
+    </div>
+    
+<!-- 戻る＆マップボタン -->
+<div id="navButtons">
+  <button onclick="goBackStage()">← 戻る</button>
+  <button onclick="location.href='map.html'">🗺 マップへ</button>
+</div>
+
+<button class="haru-btn bottom-right" onclick="location.href='haru-coin.html'">💰 how to use haru-coin</button>
+
+
+  <div id="gameArea">
+    <div id="player"></div>
+
+     <!-- コイン -->
+     <div class="coin" data-id="g1c1" style="left: 300px; top: 200px;" data-memory="Our travel is going to start! try to comlete this game !"></div>
+     <div class="coin" data-id="g1c2"style="left: 400px; top: 450px;" data-memory="this is oldest pictures i have with you "></div>
+     <div class="coin" data-id="g1c3"style="left: 900px; top: 270px;" data-memory="best picture from you sent me !"></div>
+ 
+    <!-- 吹き出し -->
+    <div id="coinMessage" style="display: none;">
+      <span id="coinMessageText">🪙</span>
+      <button id="closeCoinMsg">×</button>
+    </div> 
+
+<!-- ゴール -->
+<div id="goal" style="display: none;">🏁</div>
+  <!-- スタート説明画面 -->
+  <div id="introBox">
+    <div class="intro-content">
+      <h2>🛫 Stage 1 perth</h2>
+      <p>correct Haru coin all and go to goal!</p>
+      <button id="startBtn">OK</button>
+    </div>
+</div>
+
+<!-- ステージクリア画面（共通） -->
+<div id="clearBox" style="display: none;">
+    <div class="clear-content">
+      <h2>🎉 Stage Clear!</h2>
+      <p id="memoryText">思い出を表示中...</p>
+      <button id="nextStageBtn">次へ ➡️</button>
+      <button class="break-button" onclick="location.href='break-perth.html'">✉️ 休憩する</button>
+    </div>
+  </div>
+  
+  
+
+  <script src="game-script.js"></script>
+</body>
+</html>

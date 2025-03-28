@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>思い出 Travel マップ</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 60px;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .map-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .stage-box {
+      width: 220px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      background: #f0f0f0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: default;
+    }
+    .stage-box.unlocked {
+      background: #42a5f5;
+      color: white;
+      cursor: pointer;
+    }
+    .stage-box.locked {
+      background: #e0e0e0;
+      color: #888;
+      font-style: italic;
+    }
+    .stage-box.unlocked:hover {
+      background: #1e88e5;
+    }
+  </style>
+</head>
+<body>
+  <h1>🗺 思い出 Travel マップ</h1>
+
+  <div class="map-grid">
+    <div id="stage1" class="stage-box unlocked" onclick="location.href='game.html'">Stage 1 - パース</div>
+    <div id="stage2" class="stage-box locked">？？？</div>
+    <div id="stage3" class="stage-box locked">？？？</div>
+    <div id="stage4" class="stage-box locked">？？？</div>
+  </div>
+
+  <script>
+    // 各ステージがクリアされているか確認
+    if (localStorage.getItem("game.html_cleared") === "true") {
+      const stage2 = document.getElementById("stage2");
+      stage2.classList.remove("locked");
+      stage2.classList.add("unlocked");
+      stage2.textContent = "Stage 2 - シンガポール";
+      stage2.onclick = () => location.href = 'game2.html';
+    }
+
+    if (localStorage.getItem("game2.html_cleared") === "true") {
+      const stage3 = document.getElementById("stage3");
+      stage3.classList.remove("locked");
+      stage3.classList.add("unlocked");
+      stage3.textContent = "Stage 3 - 関西空港";
+      stage3.onclick = () => location.href = 'game3.html';
+    }
+
+    if (localStorage.getItem("game3.html_cleared") === "true") {
+      const stage4 = document.getElementById("stage4");
+      stage4.classList.remove("locked");
+      stage4.classList.add("unlocked");
+      stage4.textContent = "Stage 4 - 大阪";
+      stage4.onclick = () => location.href = 'game4.html';
+    }
+  </script>
+</body>
+</html>

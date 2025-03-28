@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>HARUコインショップ</title>
+  <link rel="stylesheet" href="haru-coin-style.css">
+</head>
+<body>
+  <div class="shop-header">
+    <h1>💰 HARUコインショップ</h1>
+    <div class="coin-counter">現在の所持：<span id="haruTotal">0</span> haru</div>
+  </div>
+
+  <div class="shop-table">
+    <table>
+      <thead>
+        <tr>
+          <th>アイテム</th>
+          <th>必要コイン</th>
+          <th>内容</th>
+          <th>購入</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🎁 プレゼントボックス</td>
+          <td>10 haru</td>
+          <td>ちいさなサプライズがもらえる！</td>
+          <td><button class="buy-btn" data-id="gift" data-cost="10">購入</button></td>
+        </tr>
+        <tr>
+          <td>💌 ひみつの手紙</td>
+          <td>15 haru</td>
+          <td>思い出メッセージが届く</td>
+          <td><button class="buy-btn" data-id="letter" data-cost="15">購入</button></td>
+        </tr>
+        <tr>
+          <td>🧳 新しい旅のステージ</td>
+          <td>20 haru</td>
+          <td>新エリアのロック解除（Coming Soon）</td>
+          <td><button class="buy-btn" data-id="stage" data-cost="20">購入</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="shop-buttons">
+    <button onclick="goBack()">← ゲームに戻る</button>
+    <button onclick="location.href='index2.html'">🌐 haruria.comへ</button>
+  </div>
+
+  <script src="haru-coin.js"></script>
+</body>
+</html>

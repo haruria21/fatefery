@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>ステージ4 - 大阪</title>
+  <link rel="stylesheet" href="game-style.css" />
+</head>
+<body>
+  <!-- ステージ名＆コイン表示 -->
+  <div id="stageName">Stage 4 - Osaka</div>
+  <div id="haruCounterArea">
+    <span id="haruCounter">haru: 0</span>
+    <button id="resetHaruBtn">🔄 リセット</button>
+  </div>
+  
+  <!-- 戻る＆マップボタン -->
+  <div id="navButtons">
+    <button onclick="goBackStage()">⬅ 戻る</button>
+    <button onclick="location.href='map.html'">🗺 マップへ</button>
+  </div>
+
+  <button class="haru-btn bottom-right" onclick="location.href='haru-coin.html'">💰 how to use haru-coin</button>
+
+  <!-- ゲームエリア -->
+  <div id="gameArea" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz6lEZdEHNdW34E-spH68wC1XvC6SbWzrnSA&s'); background-size: cover; background-position: center;">
+    <div id="player"></div>
+
+    <!-- コイン配置（思い出付き） -->
+    <div class="coin" data-id="g4c1" style="left: 300px; top: 180px;" data-memory="maybe dont need explain but our story start from here"></div>
+    <div class="coin" data-id="g4c2" style="left: 600px; top: 250px;" data-memory="our first house very cosle to station!"></div>
+    <div class="coin" data-id="g4c3" style="left: 950px; top: 120px;" data-memory="second house is good but far from station"></div>
+
+    <!-- 吹き出し -->
+    <div id="coinMessage" style="display: none;">
+      <span id="coinMessageText">🪙</span>
+      <button id="closeCoinMsg">×</button>
+    </div>
+
+    <!-- ゴール -->
+    <div id="goal" style="display: none;">🎌</div>
+  </div>
+
+  <!-- スタート説明画面 -->
+  <div id="introBox">
+    <div class="intro-content">
+      <h2>🛫 Stage 4 - Osaka</h2>
+      <p>Collect all haru coins and reach the goal!</p>
+      <button id="startBtn">OK</button>
+    </div>
+  </div>
+
+  <!-- クリア画面 -->
+  <div id="clearBox" style="display: none;">
+    <div class="clear-content">
+      <h2>🎉 Final Stage Clear!</h2>
+      <p id="memoryText">思い出：</p>
+      <button id="nextStageBtn">🏁 旅を終える</button>
+    </div>
+  </div>
+
+  <script src="game-script.js"></script>
+</body>
+</html>
